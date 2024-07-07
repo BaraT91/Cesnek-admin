@@ -1,0 +1,94 @@
+.work-page {
+  text-align: center;
+  padding: 20px;
+}
+
+.work-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1000px;
+  border: 2px solid black;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.work-form .form-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.work-form .form-group {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+}
+
+
+.work-form label {
+  margin-bottom: 5px;
+}
+
+.work-form input {
+  padding: 5px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.work-form span {
+  margin-left: 5px;
+}
+
+.work-form button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: rgb(143, 143, 198);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.work-form button:hover {
+  background-color: rgb(117, 117, 167);
+}
+
+.filter-button {
+  margin-top: 20px;
+  padding: 8px 16px;
+  background-color: rgb(143, 143, 198);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.filter-button:hover {
+  background-color: rgb(117, 117, 167);
+}
+
+.work-table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+.work-table th,
+.work-table td {
+  border: 2px solid black;
+  padding: 8px;
+}
+
+.work-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: rgb(143, 143, 198);
+  color: white;
+}
