@@ -25,23 +25,14 @@ a:hover {
 
 body {
   margin: 0;
-  width: 100%;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
   justify-content: center;
-  width: 100%;
   align-items: center;
-  height: 100vh;
   margin: 0;
   background-color: lavender
 }
-
-h1 {
-  font-size: 3em;
-  line-height: 1.1;
-}
-
 
 
 @media (prefers-color-scheme: light) {
