@@ -1,6 +1,6 @@
 body {
-  display: flex;
   justify-content: center;
+  width: 100%;
   align-items: center;
   height: 100vh;
   margin: 0;
