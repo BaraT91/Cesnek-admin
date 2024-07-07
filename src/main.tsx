@@ -4,17 +4,15 @@ import {
   createBrowserRouter,
   RouterProvider,
   Outlet,
-  useLocation,
 } from 'react-router-dom';
 import { HomePage } from './Pages/HomePage/home';
-import { Header } from './Pages/Components/Header/header';
-import { Footer } from './Pages/Components/Footer/footer';
-import { Workers } from './Pages/Workers/workers';
+import { Header } from './Components/Header/header';
+import { Footer } from './Components/Footer/footer';
+import { Reports } from './Pages/Reports/reports';
 import { Work } from './Pages/AddWork/work';
 import './index.css';
 
 export const App: React.FC = () => {
-  const location = useLocation();
   return (
     <div className="main">
       <Header />
@@ -30,7 +28,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: '/', element: <HomePage /> },
-      { path: '/workers', element: <Workers /> },
+      { path: '/reports', element: <Reports /> },
       { path: '/work', element: <Work /> },
     ],
   },
