@@ -9,7 +9,7 @@ import { HomePage } from './Pages/HomePage/home';
 import { Header } from './Components/Header/header';
 import { Footer } from './Components/Footer/footer';
 import { Reports } from './Pages/Reports/reports';
-import { Work } from './Pages/AddWork/work';
+import { Work } from './Pages/LogWork/work';
 import './index.css';
 
 export const App: React.FC = () => {
@@ -28,8 +28,10 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: '/', element: <HomePage /> },
-      { path: '/reports', element: <Reports /> },
-      { path: '/work', element: <Work /> },
+      { path: '/prehledy', element: <Reports /> },
+      { path: '/zadatpraci', element: <Work /> },
+      // { path: '/mzdy', element: <Vyplaty /> },
+      // { path: '/sprava', element: <Admin /> },
     ],
   },
 ]);
