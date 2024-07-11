@@ -11,6 +11,8 @@ import { Footer } from './Components/Footer/footer';
 import { Reports } from './Pages/Reports/reports';
 import { Work } from './Pages/AddWork/work';
 import './index.css';
+import { Packed } from './Pages/Reports/packed';
+import { Ordered } from './Pages/Reports/ordered';
 
 export const App: React.FC = () => {
   return (
@@ -29,7 +31,10 @@ const router = createBrowserRouter([
     children: [
       { path: '/', element: <HomePage /> },
       { path: '/reports', element: <Reports /> },
+      { path: '/prehledy/nabaleno', element: <Packed /> },
+      { path: '/prehledy/objednano', element: <Ordered /> },
       { path: '/work', element: <Work /> },
+
     ],
   },
 ]);
