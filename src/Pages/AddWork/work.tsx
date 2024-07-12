@@ -76,3 +76,5 @@ export const Work: React.FC = () => {
     </div>
   );
 };
+
+export default Work;

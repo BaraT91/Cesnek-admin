@@ -13,6 +13,9 @@ import { Work } from './Pages/AddWork/work';
 import './index.css';
 import { Packed } from './Pages/Reports/packed';
 import { Ordered } from './Pages/Reports/ordered';
+import Admin from './Pages/Admin/admin';
+import WorkType from './Pages/Admin/WorkType/type';
+import Workers from './Pages/Admin/Workers/workers';
 
 export const App: React.FC = () => {
   return (
@@ -34,6 +37,10 @@ const router = createBrowserRouter([
       { path: '/prehledy/nabaleno', element: <Packed /> },
       { path: '/prehledy/objednano', element: <Ordered /> },
       { path: '/zadatpraci', element: <Work /> },
+      { path: '/sprava', element: <Admin /> },
+      { path: '/sprava/pracovnici', element: <Workers /> },
+      { path: '/sprava/cinnosti', element: <WorkType /> },
+      { path: '/sprava/prehledy', element: <Admin /> },
 
     ],
   },
