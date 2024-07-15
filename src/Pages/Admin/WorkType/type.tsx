@@ -2,16 +2,14 @@ import './type.css';
 import React from 'react';
 
 // interface WorkTypeFormData {
-//   title: string; 
+//   title: string;
 //   code: string;
 //   unit: number;
-//   price: number; 
-//   activ: boolean; 
+//   price: number;
+//   activ: boolean;
 // }
 
 export const WorkType: React.FC = () => {
-
-
   return (
     <div className="work-page">
       <h1>Registrované činnosti</h1>

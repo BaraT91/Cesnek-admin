@@ -16,6 +16,7 @@ import { Ordered } from './Pages/Reports/ordered';
 import { Admin } from './Pages/Admin/admin';
 import {WorkType} from './Pages/Admin/WorkType/type';
 import {Workers} from './Pages/Admin/Workers/workers';
+import { Wages } from './Pages/Wages/wages';
 
 export const App: React.FC = () => {
   return (
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
       { path: '/sprava/pracovnici', element: <Workers /> },
       { path: '/sprava/cinnosti', element: <WorkType /> },
       { path: '/sprava/prehledy', element: <Admin /> },
-      // { path: '/mzdy', element: <Vyplaty /> },
+      { path: '/mzdy', element: <Wages /> },
     ],
   },
 ]);

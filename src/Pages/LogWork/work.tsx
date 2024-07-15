@@ -1,11 +1,10 @@
 import React from 'react';
-import './work.css';
 
 export const Work: React.FC = () => {
   return (
-    <div className="work-page">
+    <div className="page">
       <h1>Zadat práci</h1>
-      <form className="work-form">
+      <form className="form">
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="date">Datum:</label>
@@ -46,7 +45,7 @@ export const Work: React.FC = () => {
       </form>
       <button className="filter-button">Třídit podle:</button>
       <h2>Registrované práce</h2>
-      <table className="work-table">
+      <table className="table">
         <thead>
           <tr>
             <th>Datum</th>
