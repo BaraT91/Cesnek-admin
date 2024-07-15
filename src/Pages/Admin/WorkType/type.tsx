@@ -1,97 +1,47 @@
 import './type.css';
-import React, { useState } from 'react';
+import React from 'react';
 
-interface WorkTypeForm {
-  title: string;
-  code: string;
-  unit: number;
-  price: number;
-  activ: boolean;
-}
+// interface WorkTypeFormData {
+//   title: string; 
+//   code: string;
+//   unit: number;
+//   price: number; 
+//   activ: boolean; 
+// }
 
 export const WorkType: React.FC = () => {
-  const [form, setForm] = useState<WorkTypeForm>({
-    title: '',
-    code: '',
-    unit: 0,
-    price: 0,
-    activ: false
-  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
-    setForm(prevForm => ({
-      ...prevForm,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(form);
-  };
 
   return (
     <div className="work-page">
       <h1>Registrované činnosti</h1>
-      <form className="work-form" onSubmit={handleSubmit}>
+      <form className="work-form">
         <h2>Registrovat novou činnost</h2>
-        <div className="form-row">
-        </div>
+        <div className="form-row"></div>
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="title">Název činnosti:</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={form.title}
-              onChange={handleChange}
-            />
+            <input type="text" id="title" name="title" />
           </div>
           <div className="form-group">
             <label htmlFor="code">Zkratka:</label>
-            <input
-              type="text"
-              id="code"
-              name="code"
-              value={form.code}
-              onChange={handleChange}
-            />
+            <input type="text" id="code" name="code" />
           </div>
         </div>
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="unit">Jednotka:</label>
-            <input
-              type="number"
-              id="unit"
-              name="unit"
-              value={form.unit}
-              onChange={handleChange}
-            />
+            <input type="number" id="unit" name="unit" />
           </div>
           <div className="form-group">
             <label htmlFor="price">Cena za jednotku:</label>
-            <input
-              type="number"
-              id="price"
-              name="price"
-              value={form.price}
-              onChange={handleChange}
-            />
+            <input type="number" id="price" name="price" />
           </div>
         </div>
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="activ">Aktivní:</label>
-            <input
-              type="checkbox"
-              id="activ"
-              name="activ"
-              checked={form.activ}
-              onChange={handleChange}
-            />
+            <input type="checkbox" id="activ" name="activ" />
           </div>
         </div>
         <button type="submit">Registrovat činnost</button>
