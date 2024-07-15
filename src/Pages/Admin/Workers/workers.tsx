@@ -1,5 +1,6 @@
 import './workers.css';
+import React from 'react';
 
-export const Workers = () => <></>;
+export const Workers: React.FC = () => <></>;
 
 export default Workers;
