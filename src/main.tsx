@@ -34,6 +34,8 @@ const router = createBrowserRouter([
       { path: '/prehledy/nabaleno', element: <Packed /> },
       { path: '/prehledy/objednano', element: <Ordered /> },
       { path: '/zadatpraci', element: <Work /> },
+      
+
 
     ],
   },
