@@ -11,9 +11,9 @@ import React from 'react';
 
 export const WorkType: React.FC = () => {
   return (
-    <div className="work-page">
+    <div className="page">
       <h1>Registrované činnosti</h1>
-      <form className="work-form">
+      <form className="form">
         <h2>Registrovat novou činnost</h2>
         <div className="form-row"></div>
         <div className="form-row">
@@ -45,7 +45,7 @@ export const WorkType: React.FC = () => {
         <button type="submit">Registrovat činnost</button>
       </form>
       <h2>Registrované činnosti</h2>
-      <table className="work-table">
+      <table className="table">
         <thead>
           <tr>
             <th>Název</th>
