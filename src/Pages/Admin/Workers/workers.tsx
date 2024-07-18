@@ -1,41 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
-const API_URL = '/api/';
-
-interface Worker {
-  id: number;
-  name: string;
-  code: string;
-  email: string;
-  phone: string;
-  note: string;
-}
+import { fetchWorkers, createWorker, Worker } from '../../../Components/ApiService/apiService';
 
 export const Workers: React.FC = () => {
   const [workers, setWorkers] = useState<Worker[]>([]);
-  const [formData, setFormData] = useState<Omit<Worker, 'id'>>({
+  const [formData, setFormData] = useState<Omit<Worker, 'id' | 'code'>>({
     name: '',
-    code: '',
     email: '',
     phone: '',
     note: '',
   });
 
   useEffect(() => {
-    fetchWorkers();
+    fetchWorkersList();
   }, []);
 
-  const fetchWorkers = async () => {
+  const fetchWorkersList = async () => {
     try {
-      const response = await axios.get<Worker[]>(API_URL);
-      setWorkers(response.data);
-    } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
-        console.error('Error fetching workers:', error.message);
-      } else {
-        console.error('Unexpected error:', error);
-      }
+      const workersData = await fetchWorkers();
+      setWorkers(workersData);
+    } catch (error) {
+      console.error('Error fetching workers:', error);
     }
   };
 
@@ -49,41 +33,27 @@ export const Workers: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Povinné poleˇ
+
+    if (!formData.name) {
+      alert('Please fill in the name field.');
+      return;
+    }
+
     try {
-      const payload = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        note: formData.note,
-      };
-      console.log('Sending payload:', payload);
-      const response = await axios.post<Worker>(API_URL, payload, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      console.log('Response:', response);
+      console.log('Submitting form with data:', formData);
+      const newWorker = await createWorker(formData);
+      console.log('Worker created:', newWorker);
       setFormData({
         name: '',
-        code: '',
         email: '',
         phone: '',
         note: '',
       });
-      fetchWorkers(); // Refresh the list after submission
-    } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
-        console.error('Error registering worker:', error.message);
-        if (error.response) {
-          console.error('Response data:', error.response.data);
-          console.error('Response status:', error.response.status);
-          console.error('Response headers:', error.response.headers);
-        } else if (error.request) {
-          console.error('Request data:', error.request);
-        }
-      } else {
-        console.error('Unexpected error:', error);
-      }
+      fetchWorkersList(); // Refresh the list after submission
+    } catch (error) {
+      console.error('Error creating worker:', error);
     }
   };
 
@@ -101,6 +71,7 @@ export const Workers: React.FC = () => {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -118,7 +89,7 @@ export const Workers: React.FC = () => {
           <div className="form-group">
             <label htmlFor="email">Email:</label>
             <input
-              type="text"
+              type="email"
               id="email"
               name="email"
               value={formData.email}
