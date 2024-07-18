@@ -134,6 +134,13 @@ body {
   color: white;
 }
 
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover {
+  background-color: #f0f0f0;
+}
 
 
 @media (prefers-color-scheme: light) {

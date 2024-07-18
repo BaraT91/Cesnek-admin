@@ -22,15 +22,17 @@ export const fetchWorkers = async (): Promise<Worker[]> => {
 
 export const fetchWorkerById = async (id: string): Promise<Worker> => {
   try {
-    const response = await axios.get<Worker>(`${API_URL}${id}`);
-    return response.data;
+    const response = await axios.get<Worker[]>(`${API_URL}${id}`);
+    return response.data[0];
   } catch (error) {
     console.error('Error fetching worker:', error);
     throw error;
   }
 };
 
-export const createWorker = async (workerData: Omit<Worker, 'id' | 'code'>): Promise<Worker> => {
+export const createWorker = async (
+  workerData: Omit<Worker, 'id' | 'code'>,
+): Promise<Worker> => {
   try {
     console.log('Creating worker with data:', workerData);
     const response = await axios.post<Worker>(API_URL, workerData, {

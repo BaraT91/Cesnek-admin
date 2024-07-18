@@ -14,9 +14,10 @@ import './index.css';
 import { Packed } from './Pages/Reports/packed';
 import { Ordered } from './Pages/Reports/ordered';
 import { Admin } from './Pages/Admin/admin';
-import {WorkType} from './Pages/Admin/WorkType/type';
-import {Workers} from './Pages/Admin/Workers/workers';
+import { WorkType } from './Pages/Admin/WorkType/type';
+import { Workers } from './Pages/Admin/Workers/workers';
 import { Wages } from './Pages/Wages/wages';
+import { WorkerDetail } from './Pages/Wages/workerDetail'; 
 
 export const App: React.FC = () => {
   return (
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
       { path: '/sprava/cinnosti', element: <WorkType /> },
       { path: '/sprava/prehledy', element: <Admin /> },
       { path: '/mzdy', element: <Wages /> },
+      { path: '/worker/:id', element: <WorkerDetail /> },
     ],
   },
 ]);
