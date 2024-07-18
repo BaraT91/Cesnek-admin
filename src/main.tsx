@@ -10,7 +10,6 @@ import { Header } from './Components/Header/header';
 import { Footer } from './Components/Footer/footer';
 import { Reports } from './Pages/Reports/reports';
 import { Work } from './Pages/LogWork/work';
-import './index.css';
 import { Packed } from './Pages/Reports/packed';
 import { Ordered } from './Pages/Reports/ordered';
 import { Admin } from './Pages/Admin/admin';
