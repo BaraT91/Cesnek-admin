@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, FormEvent } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   fetchWorkerById,
@@ -9,6 +9,7 @@ export const WorkerDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [worker, setWorker] = useState<Worker | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [wageData, setWageData] = useState({ date: '', note: '', unit: '' });
 
   useEffect(() => {
     const loadWorker = async () => {
@@ -29,6 +30,19 @@ export const WorkerDetail: React.FC = () => {
     loadWorker();
   }, [id]);
 
+  const handleWageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setWageData({
+      ...wageData,
+      [name]: value,
+    });
+  };
+
+  const handleWageSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    console.log('Wage data:', wageData);
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -36,8 +50,6 @@ export const WorkerDetail: React.FC = () => {
   if (!worker) {
     return <div>Worker not found</div>;
   }
-  console.log('worker:');
-  console.log(worker);
 
   return (
     <div className="page">
@@ -53,28 +65,46 @@ export const WorkerDetail: React.FC = () => {
           <strong>Poznámka:</strong> {worker.note}
         </p>
       </div>
-      <h2>Zaevidovat vyplacení mzdy</h2>
-      <form className="form">
+
+      <form className="form" onSubmit={handleWageSubmit}>
+        <h2>Zaevidovat vyplacení mzdy</h2>
         <div className="form-wages">
           <div className="form-group">
-            <label htmlFor="date">Datum:</label>
-            <input type="date" id="date" name="date" />
+            <label htmlFor="wage-date">Datum:</label>
+            <input
+              type="date"
+              id="wage-date"
+              name="date"
+              value={wageData.date}
+              onChange={handleWageChange}
+            />
           </div>
           <div className="form-group">
-            <label htmlFor="note">Poznámka:</label>
-            <input type="text" id="note" name="note" />
+            <label htmlFor="wage-note">Poznámka:</label>
+            <input
+              type="text"
+              id="wage-note"
+              name="note"
+              value={wageData.note}
+              onChange={handleWageChange}
+            />
           </div>
-
           <div className="form-group">
-            <label htmlFor="unit">Částka:</label>
-            <input type="number" id="unit" name="unit" />
+            <label htmlFor="wage-unit">Částka:</label>
+            <input
+              type="number"
+              id="wage-unit"
+              name="unit"
+              value={wageData.unit}
+              onChange={handleWageChange}
+            />
           </div>
         </div>
-
         <button type="submit">Uložit</button>
       </form>
       <form>
-        <div className="form">
+        <div className="form" onSubmit={(e) => e.preventDefault()}>
+          <h2>Mzda za období</h2>
           <div className="form-wages">
             <div className="form-group">
               <label htmlFor="start-date">Od:</label>
@@ -85,9 +115,11 @@ export const WorkerDetail: React.FC = () => {
               <input type="date" id="end-date" name="end-date" />
             </div>
           </div>
-          <div className="form-group">
-            <label htmlFor="wages"><strong>Mzda za období:</strong></label>
-            <div className="readonly-cell" id="wages"></div>
+          <div className="form-group" onSubmit={(e) => e.preventDefault()}>
+            <label htmlFor="period-wages">
+              <strong>Mzda za období:</strong>
+            </label>
+            <div className="readonly-cell" id="period-wages"></div>
           </div>
           <table className="table">
             <thead>
@@ -113,6 +145,36 @@ export const WorkerDetail: React.FC = () => {
               </tr>
             </tbody>
           </table>
+        </div>
+        <div className="form">
+          <h2>Vyplacené mzdy:</h2>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Datum</th>
+                <th>Částka v kč</th>
+                <th>Poznámka</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div className="form-group">
+            <label htmlFor="remaining-wages">
+              <strong>Zbývá doplatit v kč:</strong>
+            </label>
+            <div className="readonly-cell" id="remaining-wages"></div>
+          </div>
         </div>
       </form>
     </div>
