@@ -30,6 +30,7 @@ jobs:
            server: ${{ secrets.FTP_HOST }}
            username: ${{ secrets.FTP_USERNAME }}
            password: ${{ secrets.FTP_PASSWORD }}
-           local-dir: './dist'
+           local-dir: './dist/'
            server-dir: ./web/
            log-level: standard
+           state-name: '.ftp-deploy-sync-state-frontend.json'
