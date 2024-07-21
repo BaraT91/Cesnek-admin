@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = '/api/';
+const APIWorkerURL = '/api/object/worker/';
 
 export interface Worker {
   id: number;
@@ -12,7 +12,7 @@ export interface Worker {
 
 export const fetchWorkers = async (): Promise<Worker[]> => {
   try {
-    const response = await axios.get<Worker[]>(API_URL);
+    const response = await axios.get<Worker[]>(APIWorkerURL);
     return response.data;
   } catch (error) {
     console.error('Error fetching workers:', error);
@@ -22,7 +22,7 @@ export const fetchWorkers = async (): Promise<Worker[]> => {
 
 export const fetchWorkerById = async (id: string): Promise<Worker> => {
   try {
-    const response = await axios.get<Worker[]>(`${API_URL}${id}`);
+    const response = await axios.get<Worker[]>(`${APIWorkerURL}${id}`);
     return response.data[0];
   } catch (error) {
     console.error('Error fetching worker:', error);
@@ -35,7 +35,7 @@ export const createWorker = async (
 ): Promise<Worker> => {
   try {
     console.log('Creating worker with data:', workerData);
-    const response = await axios.post<Worker>(API_URL, workerData, {
+    const response = await axios.post<Worker>(APIWorkerURL, workerData, {
       headers: {
         'Content-Type': 'application/json',
       },
