@@ -10,6 +10,9 @@
   
   export default defineConfig({
     plugins: [react()],
+    build: {
+      sourcemap: true, // Generate source maps
+    },
     server: {
       proxy: {
         '/api': {
