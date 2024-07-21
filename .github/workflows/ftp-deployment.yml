@@ -24,11 +24,12 @@ jobs:
       - name: Build the project
         run: npm run build  # This will run `tsc -b && vite build`
 
-      - name: Upload to FTP server
-        uses: sebastianpopp/ftp-action@v1.1.0
+      - name: 📂 Sync files with FTP server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          host: ${{ secrets.FTP_HOST }}
-          user: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          localDir: 'dist'  # The directory where Vite outputs the build (adjust if different)
-          remoteDir: /web
+           server: ${{ secrets.FTP_HOST }}
+           username: ${{ secrets.FTP_USERNAME }}
+           password: ${{ secrets.FTP_PASSWORD }}
+           local-dir: './dist'
+           server-dir: ./web/
+           log-level: standard
