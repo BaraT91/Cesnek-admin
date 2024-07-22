@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { fetchWorkers, createWorker, Worker } from '../../../Components/ApiService/apiService';
+import {
+  fetchWorkers,
+  createWorker,
+  Worker,
+} from '../../../Components/ApiService/apiService';
+import { useNavigate } from 'react-router-dom';
 
 export const Workers: React.FC = () => {
   const [workers, setWorkers] = useState<Worker[]>([]);
@@ -9,6 +14,7 @@ export const Workers: React.FC = () => {
     phone: '',
     note: '',
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchWorkersList();
@@ -34,8 +40,6 @@ export const Workers: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Povinné poleˇ
-
     if (!formData.name) {
       alert('Please fill in the name field.');
       return;
@@ -51,10 +55,14 @@ export const Workers: React.FC = () => {
         phone: '',
         note: '',
       });
-      fetchWorkersList(); // Refresh the list after submission
+      fetchWorkersList();
     } catch (error) {
       console.error('Error creating worker:', error);
     }
+  };
+
+  const handleRowClick = (id: number) => {
+    navigate(`/worker/${id}`);
   };
 
   return (
@@ -118,7 +126,11 @@ export const Workers: React.FC = () => {
         </thead>
         <tbody>
           {workers.map((worker) => (
-            <tr key={worker.id}>
+            <tr
+              key={worker.id}
+              onClick={() => handleRowClick(worker.id)}
+              className="clickable-row"
+            >
               <td>{worker.name}</td>
             </tr>
           ))}
