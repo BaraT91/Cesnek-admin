@@ -4,11 +4,14 @@ import {
   fetchWorkerById,
   Worker,
 } from '../../Components/ApiService/apiService';
+import Dialog from '../../Components/Dialog/dialog';
+import EditWorker from '../../Components/Dialog/EditWorker/editWorker';
 
 export const WorkerDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [worker, setWorker] = useState<Worker | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [showDialog, setShowDialog] = useState<boolean>(false);
   const [wageData, setWageData] = useState({ date: '', note: '', unit: '' });
 
   useEffect(() => {
@@ -64,6 +67,11 @@ export const WorkerDetail: React.FC = () => {
         <p>
           <strong>Poznámka:</strong> {worker.note}
         </p>
+        <button onClick={() => setShowDialog(true)}>🖊️</button>
+
+        <Dialog show={showDialog} onClose={() => setShowDialog(false)} title="Upravit">
+          <EditWorker worker={worker} />
+        </Dialog>
       </div>
 
       <form className="form" onSubmit={handleWageSubmit}>

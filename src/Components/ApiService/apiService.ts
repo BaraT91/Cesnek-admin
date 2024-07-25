@@ -31,7 +31,7 @@ export const fetchWorkerById = async (id: string): Promise<Worker> => {
 };
 
 export const createWorker = async (
-  workerData: Omit<Worker, 'id' | 'code'>,
+  workerData: Omit<Worker, 'id'>,
 ): Promise<Worker> => {
   try {
     console.log('Creating worker with data:', workerData);
@@ -43,6 +43,20 @@ export const createWorker = async (
     return response.data;
   } catch (error) {
     console.error('Error creating worker:', error);
+    throw error;
+  }
+};
+
+export const updateWorker = async (id: string, updatedData: Partial<Worker>): Promise<Worker> => {
+  try {
+    const response = await axios.put<Worker>(`${APIWorkerURL}${id}`, updatedData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error updating worker:', error);
     throw error;
   }
 };
